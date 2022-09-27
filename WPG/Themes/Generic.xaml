@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:clr="clr-namespace:System;assembly=mscorlib" 
+                    xmlns:clr2="clr-namespace:System.Collections;assembly=mscorlib" 
+                    xmlns:local="clr-namespace:WPG" 
+                    xmlns:data="clr-namespace:WPG.Data" 
+                    xmlns:converters="clr-namespace:WPG.Converters" 
+                    xmlns:typeeditors="clr-namespace:WPG.TypeEditors">
+
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <converters:BoolToOppositeConverter x:Key="BoolToOppositeConverter" />
+    <converters:EnumTypeConverter x:Key="EnumTypeConverter" />
+    <converters:DoubleTypeConverter x:Key="DoubleTypeConverter" />
+
+    <local:PropertyTemplateSelector x:Key="PropertyTemplateSelector" />
+
+    <SolidColorBrush x:Key="InactiveTextBrush" Color="{x:Static SystemColors.GrayTextColor}" />
+    <SolidColorBrush x:Key="InactiveBackgroundBrush" Color="{x:Static SystemColors.ControlColor}" />
+    <SolidColorBrush x:Key="InactiveBorderBrush" Color="{x:Static SystemColors.InactiveBorderColor}" />
+    <SolidColorBrush x:Key="WindowBrush" Color="{x:Static SystemColors.WindowColor}" />
+    <SolidColorBrush x:Key="ControlTextBrush" Color="{x:Static SystemColors.ControlTextColor}" />
+    <SolidColorBrush x:Key="ControlBrush" Color="{x:Static SystemColors.ControlColor}" />
+    <SolidColorBrush x:Key="GlyphBrush" Color="Black" />
+    <SolidColorBrush x:Key="SolidBorderBrush" Color="{x:Static SystemColors.ControlColor}" />
+
+    <DrawingImage x:Key="IconABC">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                    <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M0,-0.000199999999999534L0,8.9998 1,8.9998 1,12.0008 2.586,12.0008 1,13.5858 1,15.9998 8,15.9998 8,13.0008 6.449,13.0008 8.23,11.1628 11.533,14.4668 16,9.9838 16,9.4118 14.166,7.5778 13.018,8.7228 13.018,3.0278 10.018,3.0278 10.018,8.7068 9,7.6908 9,-0.000199999999999534z" />
+                    <GeometryDrawing Brush="#FF424242" Geometry="F1M7,7L5,2 4,2 2,7 3,7 3.399,6 5.601,6 6,7z M8,8L1,8 1,1 8,1z M4.5,3.25L5.2,5 3.8,5z M2,11L5,11 2,14 2,15 7,15 7,14 4.013,14 7,11.051 6.952,11 7,11 7,10 2,10z" />
+                    <GeometryDrawing Brush="#FFFFFFFF" Geometry="F1M3.7998,5L4.4998,3.25 5.1998,5z M5.9998,7L6.9998,7 4.9998,2 3.9998,2 1.9998,7 2.9998,7 3.3998,6 5.6008,6z" />
+                    <GeometryDrawing Brush="#FF00539C" Geometry="F1M14.1533,8.9678L14.8603,9.6748 11.5203,13.0278 8.1683,9.6748 8.8753,8.9678 11.0063,11.0898 11.0063,4.0038 12.0063,4.0038 12.0063,11.1078z" />
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="IconGroup">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1 M20,20z M0,0z M1,1L1,8 8,8 8,12 1,12 1,19 20,19 20,16 16,16 16,14 20,14 20,3 16,3 16,1 1,1z" />
+                <GeometryDrawing Brush="#FF424242" Geometry="F1 M20,20z M0,0z M7,7L2,7 2,2 7,2 7,7z M2,13L2,18 7,18 7,13 2,13z M9,2L9,3 15,3 15,2 9,2z M9,4L9,5 15,5 15,4 9,4z M9,6L9,7 15,7 15,6 9,6z M9,8L9,9 15,9 15,8 9,8z M9,10L9,11 15,11 15,10 9,10z M9,12L9,13 15,13 15,12 9,12z M9,15L9,16 15,16 15,15 9,15z M9,17L9,18 15,18 15,17 9,17z M16,17L16,18 19,18 19,17 16,17z M19,13L16,13 16,12 19,12 19,13z M16,10L16,11 19,11 19,10 16,10z M16,8L16,9 19,9 19,8 16,8z M19,7L16,7 16,6 19,6 19,7z M16,4L16,5 19,5 19,4 16,4z" />
+                <GeometryDrawing Brush="#FFD7D7D7" Geometry="F1 M20,20z M0,0z M4,5L4,6 5,6 5,5 6,5 6,4 5,4 5,3 4,3 4,4 3,4 3,5 4,5z M3,15L3,16 4,16 4,17 5,17 5,16 6,16 6,15 5,15 5,14 4,14 4,15 3,15z" />
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <ControlTemplate x:Key="ExpanderToggleButton" TargetType="{x:Type ToggleButton}">
+        <Grid>
+            <Rectangle Name="Rectangle" Margin="0,0,0,0" Fill="#00FFFFFF" />
+            <Path Name="Up_Arrow" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M0,0 L4,4 L8,0" RenderTransformOrigin="0.5,0.5" Fill="{StaticResource GlyphBrush}">
+                <UIElement.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                        <SkewTransform AngleX="0" AngleY="0" />
+                        <RotateTransform Angle="-90" />
+                        <TranslateTransform X="0" Y="0" />
+                    </TransformGroup>
+                </UIElement.RenderTransform>
+            </Path>
+
+            <Path Name="Down_Arrow" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M0,4 L4,0 L8,4" RenderTransformOrigin="0.5,0.5" Fill="{StaticResource GlyphBrush}">
+                <UIElement.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                        <SkewTransform AngleX="0" AngleY="0" />
+                        <RotateTransform Angle="135" />
+                        <TranslateTransform X="0" Y="0" />
+                    </TransformGroup>
+                </UIElement.RenderTransform>
+            </Path>
+        </Grid>
+        
+        <ControlTemplate.Triggers>
+            <Trigger Property="ToggleButton.IsChecked" Value="true">
+                <Setter TargetName="Down_Arrow" Property="UIElement.Visibility" Value="Visible" />
+                <Setter TargetName="Up_Arrow" Property="UIElement.Visibility" Value="Collapsed" />
+                <Setter TargetName="Down_Arrow" Property="UIElement.OpacityMask" Value="#FF000000" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="ExpanderStyle" TargetType="{x:Type Expander}">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource ControlTextBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Expander}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Name="ContentRow" Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border Name="Border" Grid.Row="0" Background="{TemplateBinding Control.Background}" BorderBrush="{StaticResource SolidBorderBrush}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <ToggleButton OverridesDefaultStyle="True" Template="{StaticResource ExpanderToggleButton}" IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <ContentPresenter Grid.Column="1" Margin="1" RecognizesAccessKey="True" ContentSource="Header" />
+                            </Grid>
+                        </Border>
+                        <Border Name="ExpandSite" Visibility="Collapsed" Grid.Row="1" Background="{StaticResource ControlBrush}" Padding="10 0 0 0">
+                            <Border BorderThickness="0" Margin="0" Padding="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}" Margin="{TemplateBinding Control.Padding}" VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" Focusable="False" />
+                            </Border>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Expander.IsExpanded" Value="True">
+                            <Setter TargetName="ExpandSite" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Border.Background" Value="{StaticResource InactiveBackgroundBrush}" />
+                            <Setter TargetName="Border" Property="Border.BorderBrush" Value="{StaticResource InactiveBorderBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource InactiveTextBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="SearchTextBoxStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="UpDownButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+
+    <Style x:Key="{x:Type typeeditors:IntegerTypeEditor}" TargetType="{x:Type typeeditors:IntegerTypeEditor}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+        <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="UIElement.AllowDrop" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type typeeditors:IntegerTypeEditor}">
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer Name="PART_ContentHost" Grid.Column="0" Margin="0" Background="{TemplateBinding Control.Background}" />
+                        <Grid Column="1" Width="20" VerticalAlignment="Stretch" HorizontalAlignment="Right" Margin="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            
+                            <Button ToolTip="Increase Value" Grid.Row="0" Command="{x:Static typeeditors:IntegerTypeEditor.UpCommand}" Style="{StaticResource UpDownButtonStyle}">
+                                <Path HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FF000000" Data="M0,0 L4,4 L8,0" RenderTransformOrigin="0.5,0.5">
+                                    <UIElement.RenderTransform>
+                                        <RotateTransform Angle="-180" />
+                                    </UIElement.RenderTransform>
+                                </Path>
+                            </Button>
+                            
+                            <Button ToolTip="Decrement Value" Grid.Row="1" Command="{x:Static typeeditors:IntegerTypeEditor.DownCommand}" Style="{StaticResource UpDownButtonStyle}">
+                                <Path HorizontalAlignment="Center" VerticalAlignment="Center" Fill="#FF000000" Data="M0,0 L4,4 L8,0" RenderTransformOrigin="0.5,0.5">
+                                    <UIElement.RenderTransform>
+                                        <RotateTransform Angle="0" />
+                                    </UIElement.RenderTransform>
+                                </Path>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <DataTemplate x:Key="{DataTemplateKey {x:Type data:PropertyCollection}}" DataType="{x:Type data:PropertyCollection}">
+        <Border Background="{StaticResource WindowBrush}" BorderThickness="0,1,0,0" BorderBrush="{StaticResource SolidBorderBrush}">
+            <ItemsControl ItemsSource="{Binding Path=Items}"/>
+        </Border>        
+    </DataTemplate>
+
+    <DataTemplate x:Key="{DataTemplateKey {x:Type data:PropertyCategory}}" DataType="{x:Type data:PropertyCategory}">
+        <Expander IsExpanded="True" Background="{StaticResource ControlBrush}" Style="{StaticResource ExpanderStyle}">
+            <Expander.Header>
+                <TextBlock Text="{Binding Category}" FontWeight="SemiBold" />
+            </Expander.Header>
+            <Border Background="{StaticResource WindowBrush}" BorderThickness="0,1,0,0" BorderBrush="{StaticResource SolidBorderBrush}">
+                <ItemsControl ItemsSource="{Binding Path=Items}"/>    
+            </Border>
+        </Expander>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{DataTemplateKey {x:Type data:ExpandableProperty}}" DataType="{x:Type data:ExpandableProperty}">
+        <Expander IsExpanded="False" Background="{StaticResource ControlBrush}" Style="{StaticResource ExpanderStyle}" Header="{Binding Name}">
+            <Border Background="{StaticResource WindowBrush}" BorderThickness="0,1,0,0" BorderBrush="{StaticResource SolidBorderBrush}">
+                <ItemsControl ItemsSource="{Binding Path=Items}"/>
+            </Border>
+        </Expander>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{DataTemplateKey {x:Type data:Property}}" DataType="{x:Type data:Property}">
+        <DockPanel Height="24" Margin="0,-1,0,0">
+            <Border BorderThickness="1,0,1,1" BorderBrush="{StaticResource SolidBorderBrush}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{Binding NameWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:PropertyGrid}}}" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" DockPanel.Dock="Left" Margin="2,0,2,0" TextAlignment="Left" VerticalAlignment="Center" Text="{Binding Mode=OneTime, Path=Name}">
+                        <FrameworkElement.ToolTip>
+                            <ToolTip>
+                                <ContentControl.Content>
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Padding="1,0,0,0" Text="{Binding Mode=OneTime, Path=Name}"/>
+                                            <TextBlock Text=": " Padding="1,0,0,0"/>
+                                            <TextBlock FontWeight="Bold" Padding="1,0,0,0" Text="{Binding Mode=OneTime, Path=PropertyType}"/>
+                                        </StackPanel>
+                                        <TextBlock Padding="1,1,0,0" Text="{Binding Mode=OneTime, Path=Description}" />
+                                    </StackPanel>
+                                </ContentControl.Content>
+                            </ToolTip>
+                        </FrameworkElement.ToolTip>
+                    </TextBlock>
+                    <Border Grid.Column="1" Margin="0" Padding="0" BorderThickness="1,0,0,0" BorderBrush="{StaticResource SolidBorderBrush}">
+                        <ContentControl VerticalAlignment="Stretch" ContentTemplateSelector="{StaticResource PropertyTemplateSelector}" Content="{Binding Mode=OneWay}" />
+                    </Border>
+                </Grid>
+            </Border>
+        </DockPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey ResourceId=default, TypeInTargetAssembly={x:Type local:PropertyGrid}}">
+        <TextBox IsReadOnly="{Binding Path=IsReadOnly}" Style="{StaticResource TextBoxStyle}">
+            <TextBox.Text>
+                <Binding Mode="TwoWay" Path="Value">
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:PropertyGrid}, ResourceId={x:Type clr:Int32}}">
+        <typeeditors:IntegerTypeEditor Foreground="#FF000000" Text="{Binding Path=Value}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:PropertyGrid}, ResourceId={x:Type clr:Boolean}}">
+        <CheckBox Margin="2 0 0 0" IsEnabled="{Binding Path=IsWriteable}" IsChecked="{Binding Path=Value}" VerticalContentAlignment="Center" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:PropertyGrid}, ResourceId={x:Type clr2:IList}}">
+        <ListBox ItemsSource="{Binding Path=Value}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:PropertyGrid}, ResourceId={x:Type clr:Enum}}">
+        <ComboBox SelectedValue="{Binding Path=Value}">
+            <ItemsControl.ItemsSource>
+                <Binding Path="Value" Converter="{StaticResource EnumTypeConverter}" />
+            </ItemsControl.ItemsSource>
+        </ComboBox>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:PropertyGrid}, ResourceId={x:Type clr:Double}}">
+        <TextBox IsReadOnly="{Binding Path=IsReadOnly}" Text="{Binding Path=Value, Converter={StaticResource DoubleTypeConverter}, Mode=TwoWay}" Style="{StaticResource TextBoxStyle}" />
+    </DataTemplate>
+
+    <Style x:Key="{x:Type local:PropertyGrid}" TargetType="{x:Type local:PropertyGrid}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PropertyGrid}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition MinHeight="120" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        
+                        <DockPanel Grid.Row="0" LastChildFill="True">
+                            <Border DockPanel.Dock="Top" Background="{StaticResource ControlBrush}" BorderThickness="0,0,0,1" BorderBrush="{StaticResource SolidBorderBrush}">
+                                <Grid Margin="0,0,0,2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.ColumnSpan="3" Orientation="Horizontal" Margin="6 4 0 6">
+                                        <TextBlock Name="PART_InstanceType" FontWeight="Bold"/>
+                                        <TextBlock Width="6" >:</TextBlock>
+                                        <TextBlock Name="PART_InstanceName"/>
+                                    </StackPanel>
+
+                                    <ToggleButton Grid.Row="1" ToolTip="Categorized" Width="24" Height="24" Padding="0" Margin="4,0,0,0" Background="#FFD3D3D3" 
+                                                  IsChecked="{Binding Path=Categorized, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource TemplatedParent}}">
+                                        <Image Width="20" Height="20" Source="{StaticResource IconGroup}" />
+                                    </ToggleButton>
+
+                                    <ToggleButton Grid.Column="1" Grid.Row="1" ToolTip="Alphabetical" Width="24" Height="24" Padding="0" Margin="2,0,0,0">
+                                        <Image Width="20" Height="20" Source="{StaticResource IconABC}" />
+                                        <ToggleButton.IsChecked>
+                                            <Binding Path="Categorized" UpdateSourceTrigger="PropertyChanged" RelativeSource="{RelativeSource TemplatedParent}" Converter="{StaticResource BoolToOppositeConverter}"/>
+                                        </ToggleButton.IsChecked>
+                                    </ToggleButton>
+
+                                    <TextBox Grid.Column="2" Grid.Row="1" Margin="8 0 8 0" Text="{Binding Path=Filter, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource SearchTextBoxStyle}"/>
+                                </Grid>
+                            </Border>
+                            
+                            <Grid>
+                                <ItemsControl ItemsSource="{TemplateBinding local:PropertyGrid.Properties}" Background="{StaticResource WindowBrush}">
+                                    <Control.Template>
+                                        <ControlTemplate>
+                                            <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="False">
+                                                <StackPanel IsItemsHost="True" />
+                                            </ScrollViewer>
+                                        </ControlTemplate>
+                                    </Control.Template>
+                                </ItemsControl>
+                                
+                                <Thumb x:Name="PART_Thumb" HorizontalAlignment="Left" Width="5" Margin="7 0 0 0" Cursor="SizeWE">
+                                    <UIElement.RenderTransform>
+                                        <TranslateTransform X="{Binding NameWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:PropertyGrid}}}" />
+                                    </UIElement.RenderTransform>
+                                    <Control.Template>
+                                        <ControlTemplate>
+                                            <Border Background="#00FFFFFF" />
+                                        </ControlTemplate>
+                                    </Control.Template>
+                                </Thumb>
+                            </Grid>
+                        </DockPanel>
+                        
+                        <GridSplitter DataContext="{TemplateBinding local:PropertyGrid.ShowDescription}" Height="3" Grid.ColumnSpan="3" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                            <UIElement.Visibility>
+                                <Binding Converter="{StaticResource BooleanToVisibilityConverter}"/>
+                            </UIElement.Visibility>
+                        </GridSplitter>
+
+                        <StackPanel Grid.Row="1" DataContext="{TemplateBinding local:PropertyGrid.ShowDescription}" Background="{StaticResource ControlBrush}">
+                            <UIElement.Visibility>
+                                <Binding Converter="{StaticResource BooleanToVisibilityConverter}"/>
+                            </UIElement.Visibility>
+                            <TextBlock Name="Part_PropertyName" Padding="2 2 2 0" FontWeight="Bold"/>
+                            <TextBlock Name="Part_PropertyDescription" Padding="5 2 2 0" TextWrapping="WrapWithOverflow" />
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>
